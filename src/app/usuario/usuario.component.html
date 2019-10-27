@@ -1,0 +1,265 @@
+<!-- Modal -->
+<div  class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="datosPersonales"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="datosPersonales">Modificar datos personales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Desea guardar los cambios?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="cambioContraseña" tabindex="-1" role="dialog" aria-labelledby="cambioContraseña"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cambioContraseña">Modificar contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Desea guardar su nueva contraseña?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div style="    margin-left: 20%;" class="col-md-8 order-md-1">
+      <h6 style="margin-top: 10%;" class="mb-3">Formulario:</h6>
+      <form class="needs-validation" novalidate>
+        <h5 style="    margin-top: 7%;">Tus datos personales</h5>
+        <div style="   margin-top: 5%;
+        " class="row">
+          <div class="col-md-6 mb-3">
+            <label for="nombre">Nombre</label>
+
+            <input [(ngModel)]="datos.nombre" #nombre="ngModel" [ngModelOptions]="{standalone: true}" type="text"
+              class="form-control" id="nombre" placeholder="" value="{{_service.usuario.nombre}}" required>
+            <div class="invalid-feedback col-md-6 mb-3" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+              class="alert alert-danger">
+              *Indique su nombre
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="apellidos">Apellidos</label>
+
+            <input [(ngModel)]="datos.apellidos" #apellidos="ngModel" [ngModelOptions]="{standalone: true}" type="text"
+              class="form-control" id="apellidos" placeholder="" value="" required>
+            <div class="invalid-feedback" *ngIf=" apellidos.invalid && (apellidos.dirty || apellidos.touched)"
+              class="alert alert-danger">
+              *Indique sus apellidos
+            </div>
+          </div>
+        </div>
+
+
+        <div style="  margin-top: 3%;  margin-left: auto;" class="row">
+          <div class="col-md-5 mb-3">
+            <h6 style="    margin-left: -14px;font-weight: 400;
+                                ">Fecha de nacimiento</h6>
+            <div style="flex-flow: nowrap;width: 125%;" class="row">
+              <div style="margin-right: 5%;">
+
+                <input style="   text-align: center; margin-right: 5%;" [(ngModel)]="datos.fechaNacimiento['dia']"
+                  [ngModelOptions]="{standalone: true}" #dia="ngModel" type="text" class="form-control" id="dia"
+                  placeholder="" required>
+                <div class="invalid-feedback" *ngIf=" dia.invalid && (dia.dirty || dia.touched)"
+                  class="alert alert-danger">
+                  *Dia
+                </div>
+
+              </div>
+              <div style="margin-right: 5%;">
+
+
+                <input style="   text-align: center; margin-right: 5%;" [(ngModel)]="datos.fechaNacimiento['mes']"
+                  [ngModelOptions]="{standalone: true}" #mes="ngModel" type="text" class="form-control" id="mes"
+                  placeholder="" required>
+                <div class="invalid-feedback" *ngIf=" mes.invalid && (mes.dirty || mes.touched)"
+                  class="alert alert-danger">
+                  *Mes
+                </div>
+              </div>
+              <div>
+
+                <input style=" text-align: center; border-radius: 0;" [(ngModel)]="datos.fechaNacimiento['año']"
+                  [ngModelOptions]="{standalone: true}" #year="ngModel" type="text" class="form-control" id="year"
+                  placeholder="" required>
+                <div class="invalid-feedback" *ngIf="year.invalid && (year.dirty || year.touched)"
+                  class="alert alert-danger">
+                  *Año
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          <div style="flex-flow: nowrap;    margin-left: 10%;" class="col-md-4 mb-3">
+            <h6 style=" margin-left: -14px;font-weight: 400;">Documento identificativo</h6>
+            <div style="flex-flow: nowrap;     width: 160%;" class="row">
+
+              <select style="width: 40%!important;">
+                <option>DNI</option>
+                <option>NIE</option>
+
+              </select>
+
+              <input style=" text-align: center; border-radius: 0;    width: 80%;     margin-left: 5%;"
+                [(ngModel)]="datos.documento" [ngModelOptions]="{standalone: true}" #documento="ngModel" type="text"
+                class="form-control" id="documento" placeholder="" required>
+              <div class="invalid-feedback" *ngIf="documento.invalid && (documento.dirty || documento.touched)"
+                class="alert alert-danger">
+                *Documento identificativo
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <h4 style=" margin-top: 4%;   font-size: 15px;font-weight: 400;" class="mb-3">Genero</h4>
+
+        <div style="display: flex!important;" class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+            <label style="    color: slategrey;" class="custom-control-label" for="credit">Mujer</label>
+
+          </div>
+          <div style="    margin-left: 3%;" class="custom-control custom-radio">
+            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+            <label style="    color: slategrey;" class="custom-control-label" for="debit">Hombre</label>
+          </div>
+          <div style="    margin-left: 3%;" class="custom-control custom-radio">
+            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+            <label style="    color: slategrey;" class="custom-control-label" for="paypal">Prefiero no contestar</label>
+          </div>
+        </div>
+        <!-- <input [(ngModel)]="datos.username" #username="ngModel" [ngModelOptions]="{standalone: true}" type="text"
+                    class="form-control" id="username" placeholder="Username" required
+                    pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$"> -->
+
+
+
+        <div style="margin-top: 8%;" class="row">
+
+          <div style="    width: 45%;margin-left: 2%;" class="mb-3">
+            <label for="email">Email <span class="text-muted"></span></label>
+            <input [(ngModel)]="datos.email" #email="ngModel" [ngModelOptions]="{standalone: true}" type="email"
+              class="form-control" id="email" placeholder="you@example.com" required
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched) "
+              class="alert alert-danger">
+              *Porfavor introduce un email valido
+            </div>
+          </div>
+          <div style="    width: 45%;    margin-left: 6%;" class="mb-3">
+            <label for="email">Confirme su email <span class="text-muted"></span></label>
+            <input [(ngModel)]="datos.emailConf" #emailConf="ngModel" [ngModelOptions]="{standalone: true}" type="email"
+              class="form-control" id="emailConf" placeholder="you@example.com" required
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            <div class="invalid-feedback" *ngIf="emailConf.invalid && (emailConf.dirty || emailConf.touched)"
+              class="alert alert-danger">
+              *Porfavor introduce un email valido
+            </div>
+          </div>
+        </div>
+        <div style="place-content: flex-end;    margin-top: 5%;
+        " class="row">
+
+
+          <a data-toggle="modal" data-target="#exampleModalLong" style="font-size: small;font-weight: 500;color: black;   cursor: pointer;   text-decoration: none!important;  margin-right: 2%;
+            ">MODIFICAR TUS DATOS</a>
+        </div>
+
+
+        <!-- Modal -->
+        <hr>
+        <div class="row">
+          <div style="     margin-left: 2%; width: 45%;" class="mb-3">
+            <label for="pass">Contraseña</label>
+            <input [(ngModel)]="datos.pass" [ngModelOptions]="{standalone: true}" #pass="ngModel" type="password"
+              class="form-control" id="pass" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$">
+              <div class="invalid-feedback" style="width: 100%;"
+              *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="alert alert-danger">
+
+              Caracteres necesarios: <br>
+              <li>
+                1 letra Mayuscula
+              </li>
+              <li>
+                1 letra minuscula
+              </li>
+              <li>
+                un numero
+              </li>
+              <li>
+                  Minimo 8 caracteres
+              </li>
+
+
+            </div>
+          </div>
+          <div style="       margin-left: 7%;width: 45%;" class="mb-3">
+            <label for="pass1">Repetir contraseña</label>
+
+            <input [(ngModel)]="datos.pass1" [ngModelOptions]="{standalone: true}" #pass1="ngModel" type="password"
+              class="form-control" id="pass1" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$">
+              <div class="invalid-feedback" style="width: 100%;"
+              *ngIf="pass1.invalid && (pass1.dirty || pass1.touched)" class="alert alert-danger">
+
+              Caracteres necesarios: <br>
+              <li>
+                1 letra Mayuscula
+              </li>
+              <li>
+                1 letra minuscula
+              </li>
+              <li>
+                un numero
+              </li>
+              <li>
+                Minimo 8 caracteres
+              </li>
+
+
+            </div>
+          </div>
+
+
+        </div>
+        <div style="place-content: flex-end;    margin-top: 5%;
+" class="row">
+
+
+          <a data-toggle="modal" data-target="#cambioContraseña" style="font-size: small;font-weight: 500;color: black;      text-decoration: none!important;  margin-right: 2%;
+    " href="">CAMBIAR TU CONTRASEÑA</a>
+        </div>
+
+        <hr class="mb-4">
+        <!-- <button (click)="pushDatos()" class="btn btn-primary btn-lg btn-block" type="submit">Continue to
+            checkout</button> -->
+      </form>
+    </div>
+  </div>
+
+
+</div>
